@@ -4,6 +4,9 @@ import {
   BaseApplicationCustomizer
 } from '@microsoft/sp-application-base';
 
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+
 import * as strings from 'ContentFooterApplicationCustomizerStrings';
 
 const LOG_SOURCE: string = 'ContentFooterApplicationCustomizer';
@@ -41,14 +44,16 @@ export default class ContentFooterApplicationCustomizer
       const footerExists = document.querySelector('.custom-footer');
       if(!footerExists){
         const footer = document.createElement('div');
-        footer.innerHTML = '<p class="custom-footer">I am Chandima</p>';
+        
         content.appendChild(footer);
 
         // use footer element to render the react app here
-        // ReactDOM.render(footer, <App />);
+        ReactDOM.render(React.createElement("div", {style:{color:"red"}, id: 'someId', className: "custom-footer"}, 'hello'),footer);
       }
     }
   }
+
+  
 
   listener = (args) => {
     console.log(args);
