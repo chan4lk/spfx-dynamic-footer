@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://chanideals.sharepoint.com/sites/SharePointDev/SitePages/Page-1.aspx",
+      "customActions": {
+        "f597e5ce-8b8a-4c77-ac1a-4c9ee43c6959": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    },
+    "contentFooter": {
+      "pageUrl": "https://chanideals.sharepoint.com/sites/SharePointDev/SitePages/Page-1.aspx",
+      "customActions": {
+        "f597e5ce-8b8a-4c77-ac1a-4c9ee43c6959": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    },
+    "contentFooter2": {
+      "pageUrl": "https://chanideals.sharepoint.com/sites/SharePointDev/SitePages/Page-2.aspx",
+      "customActions": {
+        "f597e5ce-8b8a-4c77-ac1a-4c9ee43c6959": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    }
+  }
+}
