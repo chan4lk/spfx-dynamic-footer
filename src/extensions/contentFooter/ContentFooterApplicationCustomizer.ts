@@ -43,6 +43,9 @@ export default class ContentFooterApplicationCustomizer
         const footer = document.createElement('div');
         footer.innerHTML = '<p class="custom-footer">I am Chandima</p>';
         content.appendChild(footer);
+
+        // use footer element to render the react app here
+        // ReactDOM.render(footer, <App />);
       }
     }
   }
