@@ -3,7 +3,6 @@ import { Log } from '@microsoft/sp-core-library';
 import {
   BaseApplicationCustomizer
 } from '@microsoft/sp-application-base';
-import { Dialog } from '@microsoft/sp-dialog';
 
 import * as strings from 'ContentFooterApplicationCustomizerStrings';
 
@@ -37,25 +36,41 @@ export default class ContentFooterApplicationCustomizer
   };
 
   appendFooter = () => {
-    const content = document.getElementById('spPageCanvasContent');
+    const content = document.querySelector('#spPageCanvasContent');
     if(content){
-      const footer = document.createElement('div');
-      footer.innerHTML = '<p class="custom-footer">I am Chandima</p>';
-      content.appendChild(footer);
+      const footerExists = document.querySelector('.custom-footer');
+      if(!footerExists){
+        const footer = document.createElement('div');
+        footer.innerHTML = '<p class="custom-footer">I am Chandima</p>';
+        content.appendChild(footer);
+      }
     }
   }
+
+  listener = (args) => {
+    console.log(args);
+    this.inDom('#spPageCanvasContent', this.appendFooter);
+  }
+  event = null;
+
 
   @override
   public onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
 
-    let message: string = this.properties.testMessage;
-    if (!message) {
-      message = '(No properties were provided.)';
-    }
-
     this.inDom('#spPageCanvasContent', this.appendFooter);
 
+    if(!(window as any)._footerEvent){
+      this.context.application.navigatedEvent.add(this, this.listener);
+      (window as any)._footerEvent = true;
+    }
+    
+
     return Promise.resolve();
+  }
+
+  @override
+  public onDispose(){
+    this.context.application.navigatedEvent.remove(this, this.listener);
   }
 }
